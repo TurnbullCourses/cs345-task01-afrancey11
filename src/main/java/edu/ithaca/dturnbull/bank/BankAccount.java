@@ -2,9 +2,7 @@ package edu.ithaca.dturnbull.bank;
 
 // Java program to check if an email address
 // is valid using Regex.
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.*;
 
 public class BankAccount {
 

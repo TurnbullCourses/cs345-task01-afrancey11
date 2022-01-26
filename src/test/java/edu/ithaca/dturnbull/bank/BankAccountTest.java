@@ -27,7 +27,7 @@ class BankAccountTest {
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
         assertFalse( BankAccount.isEmailValid(""));         // empty string
 
-        assertFalse( BankAccount.isEmailValid("a-@b.com")); // valid email address with dash in prefix   
+        assertTrue( BankAccount.isEmailValid("a-@b.com")); // valid email address with dash in prefix   
         assertFalse( BankAccount.isEmailValid(".a@b.com")); // invalid email address with period starting the prefix
         assertFalse( BankAccount.isEmailValid("a#a@b.com")); // invalid email address with hash symbol in the prefix
     }
