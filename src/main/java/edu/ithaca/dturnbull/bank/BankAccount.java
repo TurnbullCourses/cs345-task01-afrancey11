@@ -1,5 +1,9 @@
 package edu.ithaca.dturnbull.bank;
 
+// Java program to check if an email address
+// is valid using Regex.
+import java.util.regex.Pattern;
+
 public class BankAccount {
 
     private String email;
@@ -40,11 +44,12 @@ public class BankAccount {
 
 
     public static boolean isEmailValid(String email){
-        if (email.indexOf('@') == -1){
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + 
+        "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null) {
             return false;
         }
-        else {
-            return true;
-        }
+        return pat.matcher(email).matches();
     }
 }
