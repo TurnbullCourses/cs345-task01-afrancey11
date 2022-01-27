@@ -25,14 +25,13 @@ class BankAccountTest {
     @Test
     void isEmailValidTest(){
         assertTrue(BankAccount.isEmailValid( "a@b.com"));   // valid email address
-        assertFalse( BankAccount.isEmailValid(""));         // empty string
+        assertFalse( BankAccount.isEmailValid(""));         // empty string - boarder case
 
         assertFalse( BankAccount.isEmailValid("a-@b.com"));    // invalid email address with dash in prefix   
         assertFalse( BankAccount.isEmailValid(".a@b.com"));     // invalid email address with period starting the prefix
         assertFalse( BankAccount.isEmailValid("a#a@b.com"));    // invalid email address with hash symbol in the prefix
-        assertTrue( BankAccount.isEmailValid("abc@d.com"));
-        assertTrue( BankAccount.isEmailValid("a-b@c.com"));
-        assertTrue( BankAccount.isEmailValid("a@bc"));
+        assertTrue( BankAccount.isEmailValid("a_b@c.com"));     //valid email - proper use of special char
+        assertTrue( BankAccount.isEmailValid("a@bc")); // invalid email - missing .com/etc. - boarder case
     }
 
 
