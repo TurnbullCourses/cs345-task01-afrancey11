@@ -37,6 +37,11 @@ public class BankAccount {
         if (amount <= balance){
             balance -= amount;
         }
+
+        if (amount < 0){
+
+        }
+
         else {
             throw new InsufficientFundsException("Not enough money");
         }
@@ -49,12 +54,29 @@ public class BankAccount {
         // Pattern pat = Pattern.compile(emailRegex);
 
         // return pat.matcher(email).matches();
+         
+        //check if empty
+        if (email.isEmpty() == true){
+            return false;
+        }
 
         //check for special characters
         for(int i = 0; i < email.length(); i++){
-            if (email.charAt(i) == '#' || email.charAt(i) == '!' || email.charAt(i) == '&' || email.charAt(i) == '$' || email.charAt(i) == '%' || email.charAt(i) == '^' || email.charAt(i) == '*' || email.charAt(i) == '-' ){
+            if (email.charAt(i) == '#' || email.charAt(i) == '!' || email.charAt(i) == '&' || email.charAt(i) == '$' || email.charAt(i) == '%' || email.charAt(i) == '^' || email.charAt(i) == '*'){
                 return false;
             }
+        }
+
+        //@ or . first
+        if(email.indexOf(".") == 0 || email.indexOf("@") == 0){
+            return false;
+        } 
+
+        //checks for illegal char direactly before @
+        int myChar = email.indexOf("@") - 1;
+        char myChar2 = email.charAt(myChar);
+        if(myChar2 == '-' || myChar2 == '.' || myChar2 == '_'){
+            return false;
         }
 
         //check if first character is a number
@@ -62,18 +84,8 @@ public class BankAccount {
             return false;
         } //prob an easier way to do this ^
 
-        //@ or . first
-        if(email.indexOf(".") == 0 || email.indexOf("@") == 0){
-            return false;
-        } 
-
         //check for @ and .
         if (email.indexOf('@') == -1 || email.indexOf(".") == -1){
-            return false;
-        }
-        
-        //check if empty
-        if (email.isEmpty() == true){
             return false;
         }
         
