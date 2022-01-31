@@ -49,8 +49,8 @@ public class BankAccount {
      * @throws IllegalArgumentException
      * @post checks if negative or has 2 decimal places
      */
-    public void amountValid(double amount) throws IllegalArgumentException{
-
+    public static boolean amountValid(double amount){
+        return false;
     }
 
     /**
