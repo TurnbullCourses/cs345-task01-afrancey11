@@ -34,7 +34,7 @@ public class BankAccount {
      * @post reduces the balance by amount if amount is non-negative and smaller than balance
      */
     public void withdraw (double amount) throws InsufficientFundsException{
-        if (amount <= balance && amount > 0){
+        if (amount <= balance && amount >= 0){
             balance -= amount;
         }
 
@@ -45,6 +45,25 @@ public class BankAccount {
         if (amount > balance){
             throw new InsufficientFundsException("Not enough money");
         }
+    }
+
+    /**
+     * 
+     * @param amount
+     * @param bank acc to transfer to
+     * @post reduces balance of bank acc and puts into another if withdrawl from BA1 is possible and amount is valid
+     */
+    public void transfer(double amount, BankAccount toBankAccount){
+
+    }
+
+    /**
+     * 
+     * @param amount
+     * @post adds money to acc - if amount is valid
+     */
+    public void deposit(double amount){
+
     }
 
 
@@ -71,6 +90,10 @@ public class BankAccount {
         if(email.indexOf(".") == 0 || email.indexOf("@") == 0){
             return false;
         } 
+
+        //make list of char instead of individual checks
+        //more than one @
+        //having 2 special char next to each 
 
         //checks for illegal char direactly before @
         int myChar = email.indexOf("@") - 1;
