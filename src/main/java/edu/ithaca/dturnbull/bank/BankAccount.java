@@ -49,11 +49,18 @@ public class BankAccount {
      * @post checks if negative or has 2 decimal places
      */
     public static boolean amountValid(double amount){
+        //check for negative
         if(amount < 0){
             return false;
         }
         
-        return false;
+        //check for decimal place
+        String amountString = Double.toString(amount);
+        if(amountString.indexOf(".") < amountString.length() - 3){
+            return false;
+        }
+
+        return true;
     }
 
     /**

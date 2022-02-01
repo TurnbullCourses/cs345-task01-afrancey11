@@ -53,8 +53,8 @@ class BankAccountTest {
     @Test
     void amountValidTest(){
         assertTrue(BankAccount.amountValid(12.34)); //valid
-        assertTrue(BankAccount.amountValid(12));    //valid - whole number
-        assertTrue(BankAccount.amountValid(12.3));    //valid, less than 2 decimals
+        assertTrue(BankAccount.amountValid(12)); // whole number
+        assertTrue(BankAccount.amountValid(12.3)); //less than 2 decimals
         assertFalse(BankAccount.amountValid(12.345));   //too many decimals
         assertFalse(BankAccount.amountValid(-12.34));   //negative value
     }
