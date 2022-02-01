@@ -31,7 +31,7 @@ class BankAccountTest {
         assertEquals(100, bankAccount.getBalance(), 0.001);
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); //withdraw too much - boarder case
         assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-100)); // negative amount - boarder case
-        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(1.234)); // decima;
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(1.234)); // decimal
        
     }
 
