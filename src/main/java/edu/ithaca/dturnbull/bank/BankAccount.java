@@ -104,22 +104,13 @@ public class BankAccount {
 
 
     public static boolean isEmailValid(String email){
-        // String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + 
-        // "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
-        // Pattern pat = Pattern.compile(emailRegex);
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + 
+        "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+        Pattern pat = Pattern.compile(emailRegex);
 
-        // return pat.matcher(email).matches();
-         
         //check if empty
         if (email.isEmpty() == true){
             return false;
-        }
-
-        //check for special characters
-        for(int i = 0; i < email.length(); i++){
-            if (email.charAt(i) == '#' || email.charAt(i) == '!' || email.charAt(i) == '&' || email.charAt(i) == '$' || email.charAt(i) == '%' || email.charAt(i) == '^' || email.charAt(i) == '*'){
-                return false;
-            }
         }
 
         //@ or . first
@@ -127,29 +118,42 @@ public class BankAccount {
             return false;
         } 
 
-        //make list of char instead of individual checks
-        //more than one @
-        //having 2 special char next to each 
-
         //checks for illegal char direactly before @
         int myChar = email.indexOf("@") - 1;
         char myChar2 = email.charAt(myChar);
         if(myChar2 == '-' || myChar2 == '.' || myChar2 == '_'){
             return false;
         }
-
-        //check if first character is a number
-        if(email.indexOf("0") == 0 || email.indexOf("1") == 0 || email.indexOf("2") == 0 || email.indexOf("3") == 0 || email.indexOf("4") == 0 || email.indexOf("5") == 0 || email.indexOf("6") == 0 || email.indexOf("7") == 0 || email.indexOf("8") == 0 || email.indexOf("9") == 0){
-            return false;
-        } //prob an easier way to do this ^
-
-        //check for @ and .
-        if (email.indexOf('@') == -1 || email.indexOf(".") == -1){
-            return false;
-        }
         
         else{
-            return true;
+            return pat.matcher(email).matches();
         }
+
+
+
+        
+        //OLD HARDCODING BEFORE REGEX ADDED FOR REFERENCE:
+
+        // //check for special characters
+        // for(int i = 0; i < email.length(); i++){
+        //     if (email.charAt(i) == '#' || email.charAt(i) == '!' || email.charAt(i) == '&' || email.charAt(i) == '$' || email.charAt(i) == '%' || email.charAt(i) == '^' || email.charAt(i) == '*'){
+        //         return false;
+        //     }
+        // }
+
+        // //two @s
+        // if(email.indexOf("@") != email.lastIndexOf("@")){
+        //     return false;
+        // }
+
+        // //check if first character is a number
+        // if(email.indexOf("0") == 0 || email.indexOf("1") == 0 || email.indexOf("2") == 0 || email.indexOf("3") == 0 || email.indexOf("4") == 0 || email.indexOf("5") == 0 || email.indexOf("6") == 0 || email.indexOf("7") == 0 || email.indexOf("8") == 0 || email.indexOf("9") == 0){
+        //     return false;
+        // } //prob an easier way to do this ^
+
+        // //check for @ and .
+        // if (email.indexOf('@') == -1 || email.indexOf(".") == -1){
+        //     return false;
+        // }
     }
 }
