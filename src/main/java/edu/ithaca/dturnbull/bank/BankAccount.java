@@ -44,27 +44,32 @@ public class BankAccount {
     }
 
     /**
-     * 
      * @param amount
      * @throws IllegalArgumentException
      * @post checks if negative or has 2 decimal places
      */
     public static boolean amountValid(double amount){
+        if(amount < 0){
+            return false;
+        }
+        
         return false;
     }
 
     /**
-     * 
      * @param amount
      * @param bank acc to transfer to
      * @post reduces balance of bank acc and puts into another if withdrawl from BA1 is possible and amount is valid
      */
-    public void transfer(double amount, BankAccount toBankAccount){
-
+    public void transfer(double amount, BankAccount toBankAccount) throws InsufficientFundsException{
+        
+        
+        if (amount > balance){
+            throw new InsufficientFundsException("Not enough money");
+        }
     }
 
     /**
-     * 
      * @param amount
      * @post adds money to acc - if amount is valid
      */

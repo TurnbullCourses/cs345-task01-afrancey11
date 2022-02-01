@@ -31,6 +31,7 @@ class BankAccountTest {
         assertEquals(100, bankAccount.getBalance(), 0.001);
         assertThrows(InsufficientFundsException.class, () -> bankAccount.withdraw(300)); //withdraw too much - boarder case
         assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-100)); // negative amount - boarder case
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(1.234)); // decima;
        
     }
 
@@ -67,11 +68,11 @@ class BankAccountTest {
         bankAccount.deposit(50);    //add
         assertEquals(250, bankAccount.getBalance(), 0.001);
         assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(-100)); // negative amount
-        
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.withdraw(1.234)); // decimal
     }
 
     @Test
-    void transferTest(){
+    void transferTest() throws InsufficientFundsException{
         BankAccount bankAccount = new BankAccount("a@b.com", 200);
         BankAccount bankAccount2 = new BankAccount("a@b.com", 200);
 
@@ -80,6 +81,8 @@ class BankAccountTest {
         assertEquals(250, bankAccount2.getBalance());
 
         assertThrows(InsufficientFundsException.class, () -> bankAccount.transfer(300, bankAccount2)); //withdraw too much
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.transfer(-100, bankAccount2)); // negative amount
+        assertThrows(IllegalArgumentException.class, () -> bankAccount.transfer(1.234, bankAccount2)); // decimal
 
     }
 
@@ -91,6 +94,8 @@ class BankAccountTest {
         assertEquals(200, bankAccount.getBalance(), 0.001);
         //check for exception thrown correctly
         assertThrows(IllegalArgumentException.class, ()-> new BankAccount("", 100));
+        assertThrows(IllegalArgumentException.class, () -> new BankAccount("a@b.com", -100)); // negative amount
+        assertThrows(IllegalArgumentException.class, () -> new BankAccount("a@b.com", 1.234)); // decimal
     }
 
 }
