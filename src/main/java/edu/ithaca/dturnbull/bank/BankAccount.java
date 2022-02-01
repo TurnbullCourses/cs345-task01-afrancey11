@@ -14,7 +14,7 @@ public class BankAccount {
      */
     public BankAccount(String email, double startingBalance){
         if(amountValid(startingBalance) == false){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("invalid starting balance");
         }
 
         if (isEmailValid(email)){
@@ -39,12 +39,11 @@ public class BankAccount {
      */
     public void withdraw (double amount) throws InsufficientFundsException{
         if(amountValid(amount) == false){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("invalid withdrawl amount");
         }
         if (amount <= balance){
             balance -= amount;
         }
-
         if (amount > balance){
             throw new InsufficientFundsException("Not enough money");
         }
@@ -76,10 +75,18 @@ public class BankAccount {
      * @post reduces balance of bank acc and puts into another if withdrawl from BA1 is possible and amount is valid
      */
     public void transfer(double amount, BankAccount toBankAccount) throws InsufficientFundsException{
-        
+        if(amountValid(amount) == false){
+            throw new IllegalArgumentException();
+        }
         
         if (amount > balance){
             throw new InsufficientFundsException("Not enough money");
+        }
+
+        else{
+            balance-=amount;
+            toBankAccount.balance += amount;
+            //could also be written with withdraw/deposit methods
         }
     }
 
@@ -88,7 +95,11 @@ public class BankAccount {
      * @post adds money to acc - if amount is valid
      */
     public void deposit(double amount){
+        if(amountValid(amount) == false){
+            throw new IllegalArgumentException();
+        }
 
+        balance+=amount;
     }
 
 
