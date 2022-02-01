@@ -16,9 +16,6 @@ class BankAccountTest {
 
         BankAccount bankAccount3 = new BankAccount("a@b.com", 100.57);
         assertEquals(100.57, bankAccount3.getBalance(), 0.001); //tests w decimal
-
-        BankAccount bankAccount4 = new BankAccount("a@b.com", -200);
-        assertEquals(200, bankAccount.getBalance(), 0.001); //tests w negative value
     }
 
     @Test
